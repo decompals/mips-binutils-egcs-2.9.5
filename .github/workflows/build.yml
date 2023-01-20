@@ -103,5 +103,3 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: ${{ matrix.TARGET.ARCHIVE_NAME }}
-          release: latest
-          tag: latest
