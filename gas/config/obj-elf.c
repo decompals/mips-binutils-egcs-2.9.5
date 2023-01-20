@@ -62,7 +62,6 @@ static void obj_elf_line PARAMS ((int));
 void obj_elf_version PARAMS ((int));
 static void obj_elf_size PARAMS ((int));
 static void obj_elf_type PARAMS ((int));
-static void obj_elf_ident PARAMS ((int));
 static void obj_elf_weak PARAMS ((int));
 static void obj_elf_local PARAMS ((int));
 static void obj_elf_symver PARAMS ((int));
@@ -1365,7 +1364,7 @@ obj_elf_type (ignore)
   demand_empty_rest_of_line ();
 }
 
-static void
+void
 obj_elf_ident (ignore)
      int ignore ATTRIBUTE_UNUSED;
 {

@@ -635,6 +635,7 @@ static void mips_align PARAMS ((int to, int fill, symbolS *label));
 static void s_align PARAMS ((int));
 static void s_change_sec PARAMS ((int));
 static void s_cons PARAMS ((int));
+static void s_ident PARAMS ((int));
 static void s_float_cons PARAMS ((int));
 static void s_mips_globl PARAMS ((int));
 static void s_option PARAMS ((int));
@@ -712,6 +713,7 @@ static const pseudo_typeS mips_pseudo_table[] =
   {"globl", s_mips_globl, 0},
   {"global", s_mips_globl, 0},
   {"hword", s_cons, 1},
+  {"ident", s_ident, 1},
   {"int", s_cons, 2},
   {"long", s_cons, 2},
   {"octa", s_cons, 4},
@@ -9471,6 +9473,8 @@ md_apply_fix (fixP, valueP)
 #ifdef OBJ_ELF
   if (fixP->fx_addsy != NULL && OUTPUT_FLAVOR == bfd_target_elf_flavour)
     if (S_GET_OTHER (fixP->fx_addsy) == STO_MIPS16 
+	|| (S_IS_EXTERN (fixP->fx_addsy)
+	    && !bfd_is_com_section (S_GET_SEGMENT (fixP->fx_addsy)))
         || S_IS_WEAK (fixP->fx_addsy)
         || (symbol_used_in_reloc_p (fixP->fx_addsy)
             && (((bfd_get_section_flags (stdoutput,
@@ -9975,6 +9979,14 @@ void
 mips_enable_auto_align ()
 {
   auto_align = 1;
+}
+
+static void
+s_ident (ignore)
+     int ignore;
+{
+  mips_emit_delays (true);
+  obj_elf_ident(0);
 }
 
 static void
@@ -10910,6 +10922,9 @@ md_estimate_size_before_relax (fragp, segtype)
       change = (symsec != &bfd_und_section
 		&& symsec != &bfd_abs_section
 		&& ! bfd_is_com_section (symsec));
+#ifdef OBJ_ELF
+      change = change && ! S_IS_EXTERN(sym) && ! S_IS_WEAK(sym);
+#endif
     }
   else
     abort ();
@@ -10945,6 +10960,13 @@ int
 mips_fix_adjustable (fixp)
      fixS *fixp;
 {
+#ifdef OBJ_ELF
+  /* Prevent all adjustments to global symbols. */
+  if (S_IS_EXTERN (fixp->fx_addsy))
+    return 0;
+  if (S_IS_WEAK (fixp->fx_addsy))
+    return 0;
+#endif
   if (fixp->fx_r_type == BFD_RELOC_MIPS16_JMP)
     return 0;
   if (fixp->fx_r_type == BFD_RELOC_VTABLE_INHERIT

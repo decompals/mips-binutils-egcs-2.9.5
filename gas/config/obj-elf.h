@@ -126,6 +126,8 @@ extern void elf_frob_file_after_relocs PARAMS ((void));
 #define obj_app_file elf_file_symbol
 extern void elf_file_symbol PARAMS ((char *));
 
+extern void obj_elf_ident PARAMS ((int));
+
 extern void obj_elf_section_change_hook PARAMS ((void));
 
 extern void obj_elf_section PARAMS ((int));

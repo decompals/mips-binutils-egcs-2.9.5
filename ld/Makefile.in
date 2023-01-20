@@ -1,6 +1,6 @@
-# Makefile.in generated automatically by automake 1.4 from Makefile.am
+# Makefile.in generated automatically by automake 1.3 from Makefile.am
 
-# Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
+# Copyright (C) 1994, 1995, 1996, 1997, 1998 Free Software Foundation, Inc.
 # This Makefile.in is free software; the Free Software Foundation
 # gives unlimited permission to copy and/or distribute it,
 # with or without modifications, as long as this notice is preserved.
@@ -11,7 +11,7 @@
 # PARTICULAR PURPOSE.
 
 
-SHELL = @SHELL@
+SHELL = /bin/sh
 
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
@@ -32,7 +32,7 @@ mandir = @mandir@
 includedir = @includedir@
 oldincludedir = /usr/include
 
-DESTDIR =
+DISTDIR =
 
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -46,7 +46,7 @@ AUTOMAKE = @AUTOMAKE@
 AUTOHEADER = @AUTOHEADER@
 
 INSTALL = @INSTALL@
-INSTALL_PROGRAM = @INSTALL_PROGRAM@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 transform = @program_transform_name@
@@ -63,44 +63,15 @@ host_alias = @host_alias@
 host_triplet = @host@
 target_alias = @target_alias@
 target_triplet = @target@
-AS = @AS@
-CATALOGS = @CATALOGS@
-CATOBJEXT = @CATOBJEXT@
 CC = @CC@
 CC_FOR_BUILD = @CC_FOR_BUILD@
-DATADIRNAME = @DATADIRNAME@
-DLLTOOL = @DLLTOOL@
 EMULATION_LIBPATH = @EMULATION_LIBPATH@
-EXEEXT = @EXEEXT@
 EXEEXT_FOR_BUILD = @EXEEXT_FOR_BUILD@
-GMOFILES = @GMOFILES@
-GMSGFMT = @GMSGFMT@
-GT_NO = @GT_NO@
-GT_YES = @GT_YES@
 HDEFINES = @HDEFINES@
-INCLUDE_LOCALE_H = @INCLUDE_LOCALE_H@
-INSTOBJEXT = @INSTOBJEXT@
-INTLDEPS = @INTLDEPS@
-INTLOBJS = @INTLOBJS@
-LD = @LD@
 LIBTOOL = @LIBTOOL@
-LN_S = @LN_S@
-MAINT = @MAINT@
-MAKEINFO = @MAKEINFO@
-MKINSTALLDIRS = @MKINSTALLDIRS@
-MSGFMT = @MSGFMT@
 NATIVE_LIB_DIRS = @NATIVE_LIB_DIRS@
-NM = @NM@
-PACKAGE = @PACKAGE@
-POFILES = @POFILES@
-POSUB = @POSUB@
 RANLIB = @RANLIB@
 STRINGIFY = @STRINGIFY@
-USE_INCLUDED_LIBINTL = @USE_INCLUDED_LIBINTL@
-USE_NLS = @USE_NLS@
-USE_SYMBOL_UNDERSCORE = @USE_SYMBOL_UNDERSCORE@
-VERSION = @VERSION@
-l = @l@
 
 INTLLIBS = @INTLLIBS@
 
@@ -129,11 +100,11 @@ EMUL_EXTRA_OFILES = @EMUL_EXTRA_OFILES@
 # a cross-linker, in which case the default is empty.  See genscripts.sh.)
 # Otherwise, they are replaced with the ones given in LIB_PATH,
 # which may have the form: LIB_PATH=/lib:/usr/local/lib
-LIB_PATH = 
+LIB_PATH =
 
 BASEDIR = $(srcdir)/..
 BFDDIR = $(BASEDIR)/bfd
-INCDIR = $(BASEDIR)/include
+INCDIR	= $(BASEDIR)/include
 MKDEP = mkdep
 
 # What version of the manual to build
@@ -149,13 +120,11 @@ EXPECT = `if [ -f $$r/../expect/expect ] ; \
 	then echo $$r/../expect/expect ; \
 	else echo expect ; fi`
 
-
 RUNTEST = `if [ -f $${srcroot}/../dejagnu/runtest ] ; \
 	then echo $${srcroot}/../dejagnu/runtest ; \
 	else echo runtest ; fi`
 
-
-RUNTESTFLAGS = 
+RUNTESTFLAGS =
 
 CC_FOR_TARGET = ` \
   if [ -f $$r/../gcc/xgcc ] ; then \
@@ -172,7 +141,6 @@ CC_FOR_TARGET = ` \
     fi; \
   fi`
 
-
 CXX = gcc
 CXX_FOR_TARGET = ` \
   if [ -f $$r/../gcc/xgcc ] ; then \
@@ -188,7 +156,6 @@ CXX_FOR_TARGET = ` \
       echo gcc | sed '$(transform)'; \
     fi; \
   fi`
-
 
 noinst_PROGRAMS = ld-new
 info_TEXINFOS = ld.texinfo
@@ -315,28 +282,24 @@ ALL_EMULATIONS = \
 	ez8001.o \
 	ez8002.o
 
-
 ALL_64_EMULATIONS = \
 	eelf64_sparc.o \
 	eelf64alpha.o \
 	eelf64bmip.o \
+	eelf64lmip.o \
 	eelf64hppa.o
-
 
 ALL_EMUL_EXTRA_OFILES = \
 	pe-dll.o \
 	deffilep.o
 
-
 CFILES = ldctor.c ldemul.c ldexp.c ldfile.c ldlang.c \
 	ldmain.c ldmisc.c ldver.c ldwrite.c lexsup.c \
 	mri.c ldcref.c pe-dll.c
 
-
 HFILES = ld.h ldctor.h ldemul.h ldexp.h ldfile.h \
 	ldlang.h ldlex.h ldmain.h ldmisc.h ldver.h \
 	ldwrite.h mri.h deffile.h pe-dll.h
-
 
 GENERATED_CFILES = ldgram.c ldlex.c deffilep.c
 GENERATED_HFILES = ldgram.h ldemul-list.h deffilep.h
@@ -344,7 +307,6 @@ GENERATED_HFILES = ldgram.h ldemul-list.h deffilep.h
 OFILES = ldgram.o ldlex.o lexsup.o ldlang.o mri.o ldctor.o ldmain.o \
 	ldwrite.o ldexp.o  ldemul.o ldver.o ldmisc.o \
 	ldfile.o ldcref.o ${EMULATION_OFILES} ${EMUL_EXTRA_OFILES}
-
 
 STAGESTUFF = *.o ldscripts/* e*.c
 
@@ -361,7 +323,6 @@ GEN_DEPENDS = $(srcdir)/genscripts.sh stringify.sed
 
 ld_new_SOURCES = ldgram.y ldlex.l lexsup.c ldlang.c mri.c ldctor.c ldmain.c \
 	ldwrite.c ldexp.c ldemul.c ldver.c ldmisc.c ldfile.c ldcref.c
-
 ld_new_DEPENDENCIES = $(EMULATION_OFILES) $(EMUL_EXTRA_OFILES) $(BFDLIB) $(LIBIBERTY) $(INTLDEPS)
 ld_new_LDADD = $(EMULATION_OFILES) $(EMUL_EXTRA_OFILES) $(BFDLIB) $(LIBIBERTY) $(INTLLIBS)
 
@@ -372,7 +333,6 @@ MAINTAINERCLEANFILES = ldver.texi
 
 MOSTLYCLEANFILES = $(STAGESTUFF) ld1$(EXEEXT) ld2$(EXEEXT) ld3$(EXEEXT) \
 	ldemul-list.h crtbegin.o crtend.o ld.log ld.sum
-
 CLEANFILES = dep.sed DEP DEP1
 
 # Stuff that should be included in a distribution.  The diststuff
@@ -384,7 +344,6 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/../mkinstalldirs
 CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES = 
-noinst_PROGRAMS =  ld-new$(EXEEXT)
 PROGRAMS =  $(noinst_PROGRAMS)
 
 
@@ -398,10 +357,10 @@ ld_new_LDFLAGS =
 LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LEXLIB = @LEXLIB@
 CFLAGS = @CFLAGS@
-COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-CCLD = $(CC)
-LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
+COMPILE = $(CC) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+LINK = $(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) -o $@
+MAKEINFO = `if test -f $(top_builddir)/../texinfo/makeinfo/makeinfo; then echo $(top_builddir)/../texinfo/makeinfo/makeinfo; else echo makeinfo; fi`
 TEXI2DVI = `if test -f $(top_srcdir)/../texinfo/util/texi2dvi; then echo $(top_srcdir)/../texinfo/util/texi2dvi; else echo texi2dvi; fi`
 TEXINFO_TEX = $(top_srcdir)/../texinfo/texinfo.tex
 INFO_DEPS = ld.info
@@ -411,51 +370,48 @@ man1dir = $(mandir)/man1
 MANS = $(man_MANS)
 
 NROFF = nroff
-DIST_COMMON =  README ./stamp-h.in ChangeLog Makefile.am Makefile.in \
-NEWS TODO acinclude.m4 aclocal.m4 config.in configure configure.in \
-ldgram.c ldlex.c
+DIST_COMMON =  README ChangeLog Makefile.am Makefile.in NEWS TODO \
+acinclude.m4 aclocal.m4 config.in configure configure.in ldgram.c \
+ldlex.c stamp-h.in
 
+
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
 
 DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
-TAR = gtar
-GZIP_ENV = --best
+TAR = tar
+GZIP = --best
 SOURCES = $(ld_new_SOURCES)
 OBJECTS = $(ld_new_OBJECTS)
 
-all: all-redirect
+all: all-recursive-am all-am
+
 .SUFFIXES:
 .SUFFIXES: .S .c .dvi .info .l .lo .o .ps .s .texi .texinfo .txi .y
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+$(srcdir)/Makefile.in: @MAINT@ Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4)
 	cd $(top_srcdir) && $(AUTOMAKE) --cygnus Makefile
 
 Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) \
 	  && CONFIG_FILES=$@ CONFIG_HEADERS= $(SHELL) ./config.status
 
-$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ configure.in  acinclude.m4
+$(ACLOCAL_M4): @MAINT@ configure.in  acinclude.m4
 	cd $(srcdir) && $(ACLOCAL)
-$(srcdir)/configure: @MAINTAINER_MODE_TRUE@$(srcdir)/configure.in $(ACLOCAL_M4) $(CONFIGURE_DEPENDENCIES)
+$(srcdir)/configure: @MAINT@$(srcdir)/configure.in $(ACLOCAL_M4) $(CONFIGURE_DEPENDENCIES)
 	cd $(srcdir) && $(AUTOCONF)
 
 config.h: stamp-h
-	@if test ! -f $@; then \
-		rm -f stamp-h; \
-		$(MAKE) stamp-h; \
-	else :; fi
+	@:
 stamp-h: $(srcdir)/config.in $(top_builddir)/config.status
 	cd $(top_builddir) \
 	  && CONFIG_FILES= CONFIG_HEADERS=config.h:config.in \
 	     $(SHELL) ./config.status
-	@echo timestamp > stamp-h 2> /dev/null
-$(srcdir)/config.in: @MAINTAINER_MODE_TRUE@$(srcdir)/stamp-h.in
-	@if test ! -f $@; then \
-		rm -f $(srcdir)/stamp-h.in; \
-		$(MAKE) $(srcdir)/stamp-h.in; \
-	else :; fi
+	@echo timestamp > stamp-h
+$(srcdir)/config.in: @MAINT@$(srcdir)/stamp-h.in
 $(srcdir)/stamp-h.in: $(top_srcdir)/configure.in $(ACLOCAL_M4) 
 	cd $(top_srcdir) && $(AUTOHEADER)
-	@echo timestamp > $(srcdir)/stamp-h.in 2> /dev/null
+	@echo timestamp > $(srcdir)/stamp-h.in
 
 mostlyclean-hdr:
 
@@ -513,18 +469,18 @@ distclean-libtool:
 
 maintainer-clean-libtool:
 
-ld-new$(EXEEXT): $(ld_new_OBJECTS) $(ld_new_DEPENDENCIES)
-	@rm -f ld-new$(EXEEXT)
+ld-new: $(ld_new_OBJECTS) $(ld_new_DEPENDENCIES)
+	@rm -f ld-new
 	$(LINK) $(ld_new_LDFLAGS) $(ld_new_OBJECTS) $(ld_new_LDADD) $(LIBS)
-.l.c:
-	$(LEX) $(AM_LFLAGS) $(LFLAGS) $< && mv $(LEX_OUTPUT_ROOT).c $@
 .y.c:
-	$(YACC) $(AM_YFLAGS) $(YFLAGS) $< && mv y.tab.c $*.c
+	$(YACC) $(YFLAGS) $< && mv y.tab.c $*.c
 	if test -f y.tab.h; then \
 	if cmp -s y.tab.h $*.h; then rm -f y.tab.h; else mv y.tab.h $*.h; fi; \
 	else :; fi
 ldgram.h: ldgram.c
 
+.l.c:
+	$(LEX) $(LFLAGS) $< && mv $(LEX_OUTPUT_ROOT).c $@
 
 ld.info: ld.texinfo
 ld.dvi: ld.texinfo
@@ -537,7 +493,7 @@ DVIPS = dvips
 	$(MAKEINFO) -I $(srcdir) $<
 
 .texi.dvi:
-	TEXINPUTS=$(top_srcdir)/../texinfo/texinfo.tex:$$TEXINPUTS \
+	TEXINPUTS=$(top_srcdir)/../texinfo:$$TEXINPUTS \
 	  MAKEINFO='$(MAKEINFO) -I $(srcdir)' $(TEXI2DVI) $<
 
 .texi:
@@ -553,7 +509,7 @@ DVIPS = dvips
 	$(MAKEINFO) -I $(srcdir) $<
 
 .texinfo.dvi:
-	TEXINPUTS=$(top_srcdir)/../texinfo/texinfo.tex:$$TEXINPUTS \
+	TEXINPUTS=$(top_srcdir)/../texinfo:$$TEXINPUTS \
 	  MAKEINFO='$(MAKEINFO) -I $(srcdir)' $(TEXI2DVI) $<
 
 .txi.info:
@@ -561,7 +517,7 @@ DVIPS = dvips
 	$(MAKEINFO) -I $(srcdir) $<
 
 .txi.dvi:
-	TEXINPUTS=$(top_srcdir)/../texinfo/texinfo.tex:$$TEXINPUTS \
+	TEXINPUTS=$(top_srcdir)/../texinfo:$$TEXINPUTS \
 	  MAKEINFO='$(MAKEINFO) -I $(srcdir)' $(TEXI2DVI) $<
 
 .txi:
@@ -573,8 +529,7 @@ DVIPS = dvips
 install-info-am: $(INFO_DEPS)
 	@$(NORMAL_INSTALL)
 	$(mkinstalldirs) $(DESTDIR)$(infodir)
-	@list='$(INFO_DEPS)'; \
-	for file in $$list; do \
+	@for file in $(INFO_DEPS); do \
 	  if test -f $$file; then d=.; else d=$(srcdir); fi; \
 	  for ifile in `cd $$d && echo $$file $$file-[0-9] $$file-[0-9][0-9]`; do \
 	    if test -f $$d/$$ifile; then \
@@ -585,8 +540,7 @@ install-info-am: $(INFO_DEPS)
 	done
 	@$(POST_INSTALL)
 	@if $(SHELL) -c 'install-info --version | sed 1q | fgrep -s -v -i debian' >/dev/null 2>&1; then \
-	  list='$(INFO_DEPS)'; \
-	  for file in $$list; do \
+	  for file in $(INFO_DEPS); do \
 	    echo " install-info --info-dir=$(DESTDIR)$(infodir) $(DESTDIR)$(infodir)/$$file";\
 	    install-info --info-dir=$(DESTDIR)$(infodir) $(DESTDIR)$(infodir)/$$file || :;\
 	  done; \
@@ -597,20 +551,17 @@ uninstall-info:
 	@if $(SHELL) -c 'install-info --version | sed 1q | fgrep -s -v -i debian' >/dev/null 2>&1; then \
 	  ii=yes; \
 	else ii=; fi; \
-	list='$(INFO_DEPS)'; \
-	for file in $$list; do \
+	for file in $(INFO_DEPS); do \
 	  test -z "$ii" \
 	    || install-info --info-dir=$(DESTDIR)$(infodir) --remove $$file; \
 	done
 	@$(NORMAL_UNINSTALL)
-	list='$(INFO_DEPS)'; \
-	for file in $$list; do \
+	for file in $(INFO_DEPS); do \
 	  (cd $(DESTDIR)$(infodir) && rm -f $$file $$file-[0-9] $$file-[0-9][0-9]); \
 	done
 
 dist-info: $(INFO_DEPS)
-	list='$(INFO_DEPS)'; \
-	for base in $$list; do \
+	for base in $(INFO_DEPS); do \
 	  if test -f $$base; then d=.; else d=$(srcdir); fi; \
 	  for file in `cd $$d && eval echo $$base*`; do \
 	    test -f $(distdir)/$$file \
@@ -671,10 +622,10 @@ uninstall-man1:
 	done
 install-man: $(MANS)
 	@$(NORMAL_INSTALL)
-	$(MAKE) $(AM_MAKEFLAGS) install-man1
+	$(MAKE) install-man1
 uninstall-man:
 	@$(NORMAL_UNINSTALL)
-	$(MAKE) $(AM_MAKEFLAGS) uninstall-man1
+	$(MAKE) uninstall-man1
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run `make' without going through this Makefile.
@@ -689,65 +640,41 @@ all-recursive install-data-recursive install-exec-recursive \
 installdirs-recursive install-recursive uninstall-recursive install-info-recursive \
 check-recursive installcheck-recursive info-recursive dvi-recursive:
 	@set fnord $(MAKEFLAGS); amf=$$2; \
-	dot_seen=no; \
-	target=`echo $@ | sed s/-recursive//`; \
 	list='$(SUBDIRS)'; for subdir in $$list; do \
+	  target=`echo $@ | sed s/-recursive//`; \
 	  echo "Making $$target in $$subdir"; \
-	  if test "$$subdir" = "."; then \
-	    dot_seen=yes; \
-	    local_target="$$target-am"; \
-	  else \
-	    local_target="$$target"; \
-	  fi; \
-	  (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) $$local_target) \
+	  (cd $$subdir && $(MAKE) $$target) \
 	   || case "$$amf" in *=*) exit 1;; *k*) fail=yes;; *) exit 1;; esac; \
-	done; \
-	if test "$$dot_seen" = "no"; then \
-	  $(MAKE) $(AM_MAKEFLAGS) "$$target-am" || exit 1; \
-	fi; test -z "$$fail"
+	done && test -z "$$fail"
 
 mostlyclean-recursive clean-recursive distclean-recursive \
 maintainer-clean-recursive:
 	@set fnord $(MAKEFLAGS); amf=$$2; \
-	dot_seen=no; \
 	rev=''; list='$(SUBDIRS)'; for subdir in $$list; do \
 	  rev="$$subdir $$rev"; \
-	  test "$$subdir" = "." && dot_seen=yes; \
 	done; \
-	test "$$dot_seen" = "no" && rev=". $$rev"; \
-	target=`echo $@ | sed s/-recursive//`; \
 	for subdir in $$rev; do \
+	  target=`echo $@ | sed s/-recursive//`; \
 	  echo "Making $$target in $$subdir"; \
-	  if test "$$subdir" = "."; then \
-	    local_target="$$target-am"; \
-	  else \
-	    local_target="$$target"; \
-	  fi; \
-	  (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) $$local_target) \
+	  (cd $$subdir && $(MAKE) $$target) \
 	   || case "$$amf" in *=*) exit 1;; *k*) fail=yes;; *) exit 1;; esac; \
 	done && test -z "$$fail"
 tags-recursive:
 	list='$(SUBDIRS)'; for subdir in $$list; do \
-	  test "$$subdir" = . || (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) tags); \
+	  (cd $$subdir && $(MAKE) tags); \
 	done
 
 tags: TAGS
 
 ID: $(HEADERS) $(SOURCES) $(LISP)
-	list='$(SOURCES) $(HEADERS)'; \
-	unique=`for i in $$list; do echo $$i; done | \
-	  awk '    { files[$$0] = 1; } \
-	       END { for (i in files) print i; }'`; \
 	here=`pwd` && cd $(srcdir) \
-	  && mkid -f$$here/ID $$unique $(LISP)
+	  && mkid -f$$here/ID $(SOURCES) $(HEADERS) $(LISP)
 
 TAGS: tags-recursive $(HEADERS) $(SOURCES) config.in $(TAGS_DEPENDENCIES) $(LISP)
 	tags=; \
 	here=`pwd`; \
 	list='$(SUBDIRS)'; for subdir in $$list; do \
-   if test "$$subdir" = .; then :; else \
-	    test -f $$subdir/TAGS && tags="$$tags -i $$here/$$subdir/TAGS"; \
-   fi; \
+	  test -f $$subdir/TAGS && tags="$$tags -i $$here/$$subdir/TAGS"; \
 	done; \
 	list='$(SOURCES) $(HEADERS)'; \
 	unique=`for i in $$list; do echo $$i; done | \
@@ -773,31 +700,29 @@ top_distdir = $(distdir)
 # tarfile.
 distcheck: dist
 	-rm -rf $(distdir)
-	GZIP=$(GZIP_ENV) $(TAR) zxf $(distdir).tar.gz
+	GZIP=$(GZIP) $(TAR) zxf $(distdir).tar.gz
 	mkdir $(distdir)/=build
 	mkdir $(distdir)/=inst
 	dc_install_base=`cd $(distdir)/=inst && pwd`; \
 	cd $(distdir)/=build \
 	  && ../configure --srcdir=.. --prefix=$$dc_install_base \
-	  && $(MAKE) $(AM_MAKEFLAGS) \
-	  && $(MAKE) $(AM_MAKEFLAGS) dvi \
-	  && $(MAKE) $(AM_MAKEFLAGS) check \
-	  && $(MAKE) $(AM_MAKEFLAGS) install \
-	  && $(MAKE) $(AM_MAKEFLAGS) installcheck \
-	  && $(MAKE) $(AM_MAKEFLAGS) dist
+	  && $(MAKE) \
+	  && $(MAKE) dvi \
+	  && $(MAKE) check \
+	  && $(MAKE) install \
+	  && $(MAKE) installcheck \
+	  && $(MAKE) dist
 	-rm -rf $(distdir)
-	@banner="$(distdir).tar.gz is ready for distribution"; \
-	dashes=`echo "$$banner" | sed s/./=/g`; \
-	echo "$$dashes"; \
-	echo "$$banner"; \
-	echo "$$dashes"
+	@echo "========================"; \
+	echo "$(distdir).tar.gz is ready for distribution"; \
+	echo "========================"
 dist: distdir
 	-chmod -R a+r $(distdir)
-	GZIP=$(GZIP_ENV) $(TAR) chozf $(distdir).tar.gz $(distdir)
+	GZIP=$(GZIP) $(TAR) chozf $(distdir).tar.gz $(distdir)
 	-rm -rf $(distdir)
 dist-all: distdir
 	-chmod -R a+r $(distdir)
-	GZIP=$(GZIP_ENV) $(TAR) chozf $(distdir).tar.gz $(distdir)
+	GZIP=$(GZIP) $(TAR) chozf $(distdir).tar.gz $(distdir)
 	-rm -rf $(distdir)
 distdir: $(DISTFILES)
 	-rm -rf $(distdir)
@@ -805,32 +730,26 @@ distdir: $(DISTFILES)
 	-chmod 777 $(distdir)
 	@for file in $(DISTFILES); do \
 	  if test -f $$file; then d=.; else d=$(srcdir); fi; \
-	  if test -d $$d/$$file; then \
-	    cp -pr $$d/$$file $(distdir)/$$file; \
-	  else \
-	    test -f $(distdir)/$$file \
-	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
-	    || cp -p $$d/$$file $(distdir)/$$file || :; \
-	  fi; \
+	  test -f $(distdir)/$$file \
+	  || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	  || cp -p $$d/$$file $(distdir)/$$file; \
 	done
 	for subdir in $(SUBDIRS); do \
-	  if test "$$subdir" = .; then :; else \
-	    test -d $(distdir)/$$subdir \
-	    || mkdir $(distdir)/$$subdir \
+	  test -d $(distdir)/$$subdir \
+	  || mkdir $(distdir)/$$subdir \
+	  || exit 1; \
+	  chmod 777 $(distdir)/$$subdir; \
+	  (cd $$subdir && $(MAKE) top_distdir=../$(distdir) distdir=../$(distdir)/$$subdir distdir) \
 	    || exit 1; \
-	    chmod 777 $(distdir)/$$subdir; \
-	    (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) top_distdir=../$(distdir) distdir=../$(distdir)/$$subdir distdir) \
-	      || exit 1; \
-	  fi; \
 	done
-	$(MAKE) $(AM_MAKEFLAGS) top_distdir="$(top_distdir)" distdir="$(distdir)" dist-info
+	$(MAKE) top_distdir="$(top_distdir)" distdir="$(distdir)" dist-info
 
 DEJATOOL = $(PACKAGE)
 
 RUNTESTDEFAULTFLAGS = --tool $(DEJATOOL) --srcdir $$srcdir
 site.exp: Makefile
 	@echo 'Making a new site.exp file...'
-	@test ! -f site.bak || rm -f site.bak
+	-@rm -f site.bak
 	@echo '## these variables are automatically generated by make ##' > $@-t
 	@echo '# Do not edit here.  If you wish to override these values' >> $@-t
 	@echo '# edit the last section' >> $@-t
@@ -844,40 +763,40 @@ site.exp: Makefile
 	@echo 'set build_alias $(build_alias)' >> $@-t
 	@echo 'set build_triplet $(build_triplet)' >> $@-t
 	@echo '## All variables above are generated by configure. Do Not Edit ##' >> $@-t
-	@test ! -f site.exp || sed '1,/^## All variables above are.*##/ d' site.exp >> $@-t
-	@test ! -f site.exp || mv site.exp site.bak
+	-@sed '1,/^## All variables above are.*##/ d' site.bak >> $@-t
+	-@mv site.exp site.bak
 	@mv $@-t site.exp
-info-am: $(INFO_DEPS)
-info: info-recursive
-dvi-am: $(DVIS)
-dvi: dvi-recursive
-check-am:
-	$(MAKE) $(AM_MAKEFLAGS) check-DEJAGNU
-check: check-recursive
-installcheck-am:
+info: $(INFO_DEPS) info-recursive
+dvi: $(DVIS) dvi-recursive
+check:
+	$(MAKE) check-recursive check-DEJAGNU
 installcheck: installcheck-recursive
-install-info-am: 
-install-info: install-info-recursive
+install-info: install-info-am install-info-recursive
 all-recursive-am: config.h
-	$(MAKE) $(AM_MAKEFLAGS) all-recursive
+	$(MAKE) all-recursive
+
+all-am: Makefile $(PROGRAMS) $(MANS) config.h
 
 install-exec-am: install-exec-local
-install-exec: install-exec-recursive
 
 install-data-am: install-man install-data-local
-install-data: install-data-recursive
 
-install-am: all-am
-	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
-install: install-recursive
 uninstall-am: uninstall-man
-uninstall: uninstall-recursive
-all-am: Makefile $(PROGRAMS) $(MANS) config.h
-all-redirect: all-recursive-am
+
+install-exec: install-exec-recursive install-exec-am
+	@$(NORMAL_INSTALL)
+
+install-data: install-data-recursive install-data-am
+	@$(NORMAL_INSTALL)
+
+install: install-recursive install-exec-am install-data-am
+	@:
+
+uninstall: uninstall-recursive uninstall-am
+
 install-strip:
-	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+	$(MAKE) INSTALL_PROGRAM='$(INSTALL_PROGRAM) -s' INSTALL_SCRIPT='$(INSTALL_PROGRAM)' install
 installdirs: installdirs-recursive
-installdirs-am:
 	$(mkinstalldirs)  $(DESTDIR)$(mandir)/man1
 
 
@@ -888,41 +807,41 @@ clean-generic:
 	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
-	-rm -f Makefile $(CONFIG_CLEAN_FILES)
+	-rm -f Makefile $(DISTCLEANFILES)
 	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
-	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
+	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 
 maintainer-clean-generic:
-	-test -z "ldlexlldgramhldgramc$(MAINTAINERCLEANFILES)" || rm -f ldlexl ldgramh ldgramc $(MAINTAINERCLEANFILES)
+	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 mostlyclean-am:  mostlyclean-hdr mostlyclean-noinstPROGRAMS \
 		mostlyclean-compile mostlyclean-libtool \
-		mostlyclean-aminfo mostlyclean-tags mostlyclean-generic \
-		mostlyclean-local
-
-mostlyclean: mostlyclean-recursive
+		mostlyclean-aminfo mostlyclean-tags mostlyclean-generic
 
 clean-am:  clean-hdr clean-noinstPROGRAMS clean-compile clean-libtool \
 		clean-aminfo clean-tags clean-generic mostlyclean-am
 
-clean: clean-recursive
-
 distclean-am:  distclean-hdr distclean-noinstPROGRAMS distclean-compile \
 		distclean-libtool distclean-aminfo distclean-tags \
-		distclean-generic clean-am distclean-local
-	-rm -f libtool
-
-distclean: distclean-recursive
-	-rm -f config.status
+		distclean-generic clean-am
 
 maintainer-clean-am:  maintainer-clean-hdr \
 		maintainer-clean-noinstPROGRAMS \
 		maintainer-clean-compile maintainer-clean-libtool \
 		maintainer-clean-aminfo maintainer-clean-tags \
 		maintainer-clean-generic distclean-am
+
+mostlyclean:  mostlyclean-recursive mostlyclean-am mostlyclean-local
+
+clean:  clean-recursive clean-am
+
+distclean:  distclean-recursive distclean-am distclean-local
+	-rm -f config.status
+	-rm -f libtool
+
+maintainer-clean:  maintainer-clean-recursive maintainer-clean-am
 	@echo "This command is intended for maintainers to use;"
 	@echo "it deletes files that may require special tools to rebuild."
-
-maintainer-clean: maintainer-clean-recursive
 	-rm -f config.status
 
 .PHONY: mostlyclean-hdr distclean-hdr clean-hdr maintainer-clean-hdr \
@@ -940,13 +859,11 @@ installcheck-recursive info-recursive dvi-recursive \
 mostlyclean-recursive distclean-recursive clean-recursive \
 maintainer-clean-recursive tags tags-recursive mostlyclean-tags \
 distclean-tags clean-tags maintainer-clean-tags distdir check-DEJAGNU \
-info-am info dvi-am dvi check check-am installcheck-am installcheck \
-install-info-am install-info all-recursive-am install-exec-local \
-install-exec-am install-exec install-data-local install-data-am \
-install-data install-am install uninstall-am uninstall all-redirect \
-all-am all installdirs-am installdirs mostlyclean-generic \
-distclean-generic clean-generic maintainer-clean-generic clean \
-mostlyclean distclean maintainer-clean
+info dvi installcheck install-info all-recursive-am all-am \
+install-exec-am install-data-am uninstall-am install-exec install-data \
+install uninstall all installdirs mostlyclean-generic distclean-generic \
+clean-generic maintainer-clean-generic clean mostlyclean distclean \
+maintainer-clean
 
 
 po/POTFILES.in: @MAINT@ Makefile
@@ -1104,6 +1021,9 @@ eelf64_sparc.c: $(srcdir)/emulparams/elf64_sparc.sh \
 eelf64bmip.c: $(srcdir)/emulparams/elf64bmip.sh \
   $(srcdir)/emultempl/elf32.em $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
 	${GENSCRIPTS} elf64bmip "$(tdir_elf64bmip)"
+eelf64lmip.c: $(srcdir)/emulparams/elf64lmip.sh \
+  $(srcdir)/emultempl/elf32.em $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
+	${GENSCRIPTS} elf64lmip "$(tdir_elf64lmip)"
 eelf_i386.c: $(srcdir)/emulparams/elf_i386.sh \
   $(srcdir)/emultempl/elf32.em $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
 	${GENSCRIPTS} elf_i386 "$(tdir_elf_i386)"

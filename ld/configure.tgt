@@ -207,10 +207,10 @@ mips*-*-rtems*)		targ_emul=elf32ebmip ;;
 mips*el-*-vxworks*)	targ_emul=elf32elmip ;;
 mips*-*-vxworks*)	targ_emul=elf32ebmip ;;
 mips*el-*-linux-gnu*)	targ_emul=elf32lsmip
-			targ_extra_emuls="elf32bsmip mipslit mipsbig"
+			targ_extra_emuls="elf32bsmip elf64lmip elf64bmip mipslit mipsbig"
 			;;
 mips*-*-linux-gnu*)	targ_emul=elf32bsmip
-			targ_extra_emuls="elf32lsmip mipsbig mipslit"
+			targ_extra_emuls="elf32lsmip elf64bmip elf64lmip mipsbig mipslit"
 			;;
 mips*-*-lnews*)		targ_emul=mipslnews ;;
 mn10200-*-*)		targ_emul=mn10200 ;;

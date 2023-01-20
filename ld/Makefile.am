@@ -214,6 +214,7 @@ ALL_64_EMULATIONS = \
 	eelf64_sparc.o \
 	eelf64alpha.o \
 	eelf64bmip.o \
+	eelf64lmip.o \
 	eelf64hppa.o
 
 ALL_EMUL_EXTRA_OFILES = \
@@ -403,6 +404,9 @@ eelf64_sparc.c: $(srcdir)/emulparams/elf64_sparc.sh \
 eelf64bmip.c: $(srcdir)/emulparams/elf64bmip.sh \
   $(srcdir)/emultempl/elf32.em $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
 	${GENSCRIPTS} elf64bmip "$(tdir_elf64bmip)"
+eelf64lmip.c: $(srcdir)/emulparams/elf64lmip.sh \
+  $(srcdir)/emultempl/elf32.em $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
+	${GENSCRIPTS} elf64lmip "$(tdir_elf64lmip)"
 eelf_i386.c: $(srcdir)/emulparams/elf_i386.sh \
   $(srcdir)/emultempl/elf32.em $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
 	${GENSCRIPTS} elf_i386 "$(tdir_elf_i386)"
