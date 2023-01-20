@@ -10,7 +10,7 @@ jobs:
       matrix:
         TARGET:
           - {
-              OS: 'ubuntu-latest',
+              OS: 'ubuntu-20.04',
               CFLAGS: '-static -fno-stack-protector -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
               HOST: 'i386-pc-linux',
               ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-linux.tar.gz'
@@ -24,11 +24,11 @@ jobs:
 
     name: Building binutils for ${{ matrix.TARGET.OS }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install dependencies (Ubuntu)
         shell: bash
-        if: matrix.TARGET.OS == 'ubuntu-latest'
+        if: matrix.TARGET.OS == 'ubuntu-20.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential bison file gperf flex
@@ -91,15 +91,14 @@ jobs:
           tar -czf ${{ matrix.TARGET.ARCHIVE_NAME }} ar as addr2line cxxfilt nm objcopy objdump ranlib readelf strings strip
 
       - name: Upload archive
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: mips-binutils-egcs-2.9.5-${{ matrix.TARGET.OS }}
           path: |
             ${{ matrix.TARGET.ARCHIVE_NAME }}
 
-      - name: Update release
-        uses: johnwbyrd/update-release@v1.0.0
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+      - name: Publish release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           files: ${{ matrix.TARGET.ARCHIVE_NAME }}
