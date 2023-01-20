@@ -42,6 +42,8 @@ binutils/strip-new
 gas/as.new
 gas/gasp.new
 gas/.gdbinit
+gas/as-new
+gas/gasp-new
 
 libiberty/stamp-picdir
 libiberty/xhost-mkfrag
