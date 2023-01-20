@@ -15,12 +15,12 @@ jobs:
               HOST: 'i386-pc-linux',
               ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-linux.tar.gz'
             }
-          - {
-              OS: 'macos-latest',
-              CFLAGS: '-DDARWIN -Wno-return-type -Wno-error -Wno-implicit-function-declaration -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
-              HOST: 'i386-apple-darwin',
-              ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-mac.tar.gz'
-            }
+          # - {
+          #     OS: 'macos-latest',
+          #     CFLAGS: '-DDARWIN -Wno-return-type -Wno-error -Wno-implicit-function-declaration -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
+          #     HOST: 'i386-apple-darwin',
+          #     ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-mac.tar.gz'
+          #   }
 
     name: Building binutils for ${{ matrix.TARGET.OS }}
     steps:
