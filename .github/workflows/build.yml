@@ -1,0 +1,109 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.TARGET.OS }}
+    strategy:
+      fail-fast: false
+      matrix:
+        TARGET:
+          - {
+              OS: 'ubuntu-latest',
+              CFLAGS: '-static -fno-stack-protector -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
+              HOST: 'i386-pc-linux',
+              ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-linux.tar.gz'
+            }
+          - {
+              OS: 'macos-latest',
+              CFLAGS: '-DDARWIN -Wno-return-type -Wno-error -Wno-implicit-function-declaration -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
+              HOST: 'i386-apple-darwin',
+              ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-mac.tar.gz'
+            }
+
+    name: Building binutils for ${{ matrix.TARGET.OS }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies (Ubuntu)
+        shell: bash
+        if: matrix.TARGET.OS == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential bison file gperf flex
+      - name: Configure for mips
+        shell: bash
+        run: |
+          ./configure --target=mips-linux --prefix=/opt/cross --disable-gprof --disable-gdb --disable-werror --host=${{ matrix.TARGET.HOST }} --build=${{ matrix.TARGET.HOST }}
+
+      - name: Make
+        shell: bash
+        run: |
+          make -C bfd CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C opcodes CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C libiberty CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C intl CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C gas CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C binutils CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+      - name: Test for file
+        shell: bash
+        run: |
+          test -f binutils/ar
+          file binutils/ar
+
+      - name: Create release archive
+        shell: bash
+        run: |
+          cp binutils/ar ar
+          cp binutils/addr2line addr2line
+          cp binutils/c++filt.1 c++filt
+          cp binutils/cxxfilt cxxfilt
+          cp binutils/nm-new nm
+          cp binutils/objcopy objcopy
+          cp binutils/objdump objdump
+          cp binutils/ranlib ranlib
+          cp binutils/readelf readelf
+          cp binutils/strings strings
+          cp binutils/strip-new strip
+          cp gas/as.new as
+          strip ar
+          strip as
+          strip addr2line
+          strip c++filt
+          strip cxxfilt
+          strip nm
+          strip objcopy
+          strip objdump
+          strip ranlib
+          strip readelf
+          strip strings
+          strip strip
+          chmod +x ar
+          chmod +x as
+          chmod +x addr2line
+          chmod +x c++filt
+          chmod +x cxxfilt
+          chmod +x nm
+          chmod +x objcopy
+          chmod +x objdump
+          chmod +x ranlib
+          chmod +x readelf
+          chmod +x strings
+          chmod +x strip
+          tar -czf ${{ matrix.TARGET.ARCHIVE_NAME }} ar as addr2line c++filt cxxfilt nm objcopy objdump ranlib readelf strings strip
+
+      - name: Upload archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: mips-binutils-egcs-2.9.5-${{ matrix.TARGET.OS }}
+          path: |
+            ${{ matrix.TARGET.ARCHIVE_NAME }}
+
+      - name: Update release
+        uses: johnwbyrd/update-release@v1.0.0
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: ${{ matrix.TARGET.ARCHIVE_NAME }}
+          tag: latest
