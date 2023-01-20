@@ -57,7 +57,6 @@ jobs:
         run: |
           cp binutils/ar ar
           cp binutils/addr2line addr2line
-          cp binutils/c++filt.1 c++filt
           cp binutils/cxxfilt cxxfilt
           cp binutils/nm-new nm
           cp binutils/objcopy objcopy
@@ -70,7 +69,6 @@ jobs:
           strip ar
           strip as
           strip addr2line
-          strip c++filt
           strip cxxfilt
           strip nm
           strip objcopy
@@ -82,7 +80,6 @@ jobs:
           chmod +x ar
           chmod +x as
           chmod +x addr2line
-          chmod +x c++filt
           chmod +x cxxfilt
           chmod +x nm
           chmod +x objcopy
@@ -91,7 +88,7 @@ jobs:
           chmod +x readelf
           chmod +x strings
           chmod +x strip
-          tar -czf ${{ matrix.TARGET.ARCHIVE_NAME }} ar as addr2line c++filt cxxfilt nm objcopy objdump ranlib readelf strings strip
+          tar -czf ${{ matrix.TARGET.ARCHIVE_NAME }} ar as addr2line cxxfilt nm objcopy objdump ranlib readelf strings strip
 
       - name: Upload archive
         uses: actions/upload-artifact@v2
