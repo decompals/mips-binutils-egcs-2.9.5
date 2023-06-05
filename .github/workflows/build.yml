@@ -67,7 +67,7 @@ jobs:
           cp binutils/strings strings
           cp binutils/strip-new strip
           cp gas/as-new as
-          cp ld/ld ld
+          cp ld/ld-new ld
           strip ar
           strip as
           strip addr2line
