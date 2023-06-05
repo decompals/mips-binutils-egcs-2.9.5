@@ -46,6 +46,7 @@ jobs:
           make -C intl CFLAGS="${{ matrix.TARGET.CFLAGS }}"
           make -C gas CFLAGS="${{ matrix.TARGET.CFLAGS }}"
           make -C binutils CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C ld CFLAGS="${{ matrix.TARGET.CFLAGS }}"
       - name: Test for file
         shell: bash
         run: |
@@ -55,40 +56,22 @@ jobs:
       - name: Create release archive
         shell: bash
         run: |
-          cp binutils/ar ar
-          cp binutils/addr2line addr2line
-          cp binutils/cxxfilt cxxfilt
-          cp binutils/nm-new nm
-          cp binutils/objcopy objcopy
-          cp binutils/objdump objdump
-          cp binutils/ranlib ranlib
-          cp binutils/readelf readelf
-          cp binutils/strings strings
-          cp binutils/strip-new strip
-          cp gas/as-new as
-          strip ar
-          strip as
-          strip addr2line
-          strip cxxfilt
-          strip nm
-          strip objcopy
-          strip objdump
-          strip ranlib
-          strip readelf
-          strip strings
-          strip strip
-          chmod +x ar
-          chmod +x as
-          chmod +x addr2line
-          chmod +x cxxfilt
-          chmod +x nm
-          chmod +x objcopy
-          chmod +x objdump
-          chmod +x ranlib
-          chmod +x readelf
-          chmod +x strings
-          chmod +x strip
-          tar -czf ${{ matrix.TARGET.ARCHIVE_NAME }} ar as addr2line cxxfilt nm objcopy objdump ranlib readelf strings strip
+          mkdir -p release
+          cp binutils/ar release/ar
+          cp binutils/addr2line release/addr2line
+          cp binutils/cxxfilt release/cxxfilt
+          cp binutils/nm-new release/nm
+          cp binutils/objcopy release/objcopy
+          cp binutils/objdump release/objdump
+          cp binutils/ranlib release/ranlib
+          cp binutils/readelf release/readelf
+          cp binutils/strings release/strings
+          cp binutils/strip-new release/strip
+          cp gas/as-new release/as
+          cp ld/ld-new release/ld
+          strip release/*
+          chmod +x release/*
+          cd release && tar -czf ../${{ matrix.TARGET.ARCHIVE_NAME }} *
 
       - name: Upload archive
         uses: actions/upload-artifact@v3
