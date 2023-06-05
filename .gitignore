@@ -57,6 +57,10 @@ gas/targ-cpu.h
 gas/targ-env.h
 libiberty/alloca-conf.h
 
+ld/ldgram.c
+ld/ldgram.h
+ld/ldlex.c
+
 POTFILES
 *.la
 libtool
