@@ -70,6 +70,7 @@ const pseudo_typeS obj_pseudo_table[] =
   { "val",	ecoff_directive_val,	0 },
 
   /* ECOFF specific debugging information.  */
+  { "aent",	ecoff_directive_ent,	1 },
   { "begin",	ecoff_directive_begin,	0 },
   { "bend",	ecoff_directive_bend,	0 },
   { "end",	ecoff_directive_end,	0 },

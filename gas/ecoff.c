@@ -3083,8 +3083,8 @@ ecoff_directive_end (ignore)
 /* Parse .ent directives.  */
 
 void
-ecoff_directive_ent (ignore)
-     int ignore;
+ecoff_directive_ent (aent)
+     int aent;
 {
   char *name;
   char name_end;
@@ -3093,7 +3093,7 @@ ecoff_directive_ent (ignore)
   if (cur_file_ptr == (efdr_t *) NULL)
     add_file ((const char *) NULL, 0, 1);
 
-  if (cur_proc_ptr != (proc_t *) NULL)
+  if (!aent && cur_proc_ptr != (proc_t *) NULL)
     {
       as_warn (_("second .ent directive found before .end directive"));
       demand_empty_rest_of_line ();
@@ -3112,7 +3112,8 @@ ecoff_directive_ent (ignore)
       return;
     }
 
-  add_procedure (name);
+  if (!aent)
+    add_procedure (name);
 
   *input_line_pointer = name_end;
 
