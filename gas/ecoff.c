@@ -3106,7 +3106,7 @@ ecoff_directive_ent (aent)
   ch = *name;
   if (! is_name_beginner (ch))
     {
-      as_warn (_(".ent directive has no name"));
+      as_warn (_("%s directive has no name"), aent ? ".aent" : ".ent");
       *input_line_pointer = name_end;
       demand_empty_rest_of_line ();
       return;
