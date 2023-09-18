@@ -47,7 +47,7 @@ jobs:
           make -C gas CFLAGS="${{ matrix.TARGET.CFLAGS }}"
           make -C binutils CFLAGS="${{ matrix.TARGET.CFLAGS }}"
           make -C ld CFLAGS="${{ matrix.TARGET.CFLAGS }}"
-          make -C sim CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C sim FLAGS_TO_PASS=libsim.a CFLAGS="${{ matrix.TARGET.CFLAGS }}"
           make -C readline CFLAGS="${{ matrix.TARGET.CFLAGS }}"
           make -C gdb CFLAGS="${{ matrix.TARGET.CFLAGS }}"
       - name: Test for file
