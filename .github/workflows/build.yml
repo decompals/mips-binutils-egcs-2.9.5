@@ -35,7 +35,7 @@ jobs:
       - name: Configure for mips
         shell: bash
         run: |
-          ./configure --target=mips-linux --prefix=/opt/cross --disable-gprof --disable-werror --host=${{ matrix.TARGET.HOST }} --build=${{ matrix.TARGET.HOST }}
+          ./configure --target=mips-linux --prefix=/opt/cross --disable-werror --host=${{ matrix.TARGET.HOST }} --build=${{ matrix.TARGET.HOST }}
 
       - name: Make
         shell: bash
@@ -47,6 +47,9 @@ jobs:
           make -C gas CFLAGS="${{ matrix.TARGET.CFLAGS }}"
           make -C binutils CFLAGS="${{ matrix.TARGET.CFLAGS }}"
           make -C ld CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C sim CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C readline CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C gdb CFLAGS="${{ matrix.TARGET.CFLAGS }}"
       - name: Test for file
         shell: bash
         run: |
