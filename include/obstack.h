@@ -417,7 +417,8 @@ __extension__								\
 ({ struct obstack *__o = (OBSTACK);					\
    if (__o->next_free + sizeof (void *) > __o->chunk_limit)		\
      _obstack_newchunk (__o, sizeof (void *));				\
-   *((void **)__o->next_free)++ = ((void *)datum);			\
+   *(void **)__o->next_free = ((void *)datum);				\
+   __o->next_free += sizeof(void *) ;					\
    (void) 0; })
 
 # define obstack_int_grow(OBSTACK,datum)				\
@@ -425,7 +426,8 @@ __extension__								\
 ({ struct obstack *__o = (OBSTACK);					\
    if (__o->next_free + sizeof (int) > __o->chunk_limit)		\
      _obstack_newchunk (__o, sizeof (int));				\
-   *((int *)__o->next_free)++ = ((int)datum);				\
+   *(int *)__o->next_free = ((int)datum);				\
+   __o->next_free += sizeof(int);					\
    (void) 0; })
 
 # define obstack_ptr_grow_fast(h,aptr) (*((void **) (h)->next_free)++ = (void *)aptr)
