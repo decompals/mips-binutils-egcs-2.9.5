@@ -35,7 +35,7 @@ jobs:
       - name: Configure for mips
         shell: bash
         run: |
-          ./configure --target=mips-linux --prefix=/opt/cross --disable-gprof --disable-gdb --disable-werror --host=${{ matrix.TARGET.HOST }} --build=${{ matrix.TARGET.HOST }}
+          ./configure --target=mips-linux --prefix=/opt/cross --disable-gprof --disable-werror --host=${{ matrix.TARGET.HOST }} --build=${{ matrix.TARGET.HOST }}
 
       - name: Make
         shell: bash

@@ -98,3 +98,8 @@ po2tbl.sed
 
 arlex.c
 arparse.*
+
+gdb/testsuite/gdb.asm/arch.inc
+gdb/nm.h
+gdb/tm.h
+gdb/xm.h
