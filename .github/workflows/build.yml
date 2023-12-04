@@ -18,7 +18,7 @@ jobs:
             }
           - {
               OS: 'macos-12',
-              CFLAGS: '-DDARWIN -Wno-return-type -Wno-error -Wno-implicit-function-declaration -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
+              CFLAGS: '-DDARWIN -Wno-implicit-int -Wno-return-type -Wno-error -Wno-implicit-function-declaration -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
               HOST: 'i386-apple-darwin',
               ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-mac.tar.gz',
               HOST_GCC: 'gcc-11'
@@ -37,17 +37,17 @@ jobs:
       - name: Configure for mips
         shell: bash
         run: |
-          CC="${{ matrix.TARGET.HOST_GCC }}" ./configure --target=mips-linux --prefix=/opt/cross --disable-gprof --disable-gdb --disable-werror --host=${{ matrix.TARGET.HOST }} --build=${{ matrix.TARGET.HOST }}
+          CC="${{ matrix.TARGET.HOST_GCC }}" CFLAGS="${{ matrix.TARGET.CFLAGS }}" ./configure --target=mips-linux --prefix=/opt/cross --disable-gprof --disable-gdb --disable-werror --host=${{ matrix.TARGET.HOST }} --build=${{ matrix.TARGET.HOST }}
 
       - name: Make
         shell: bash
         run: |
-          make -C bfd CFLAGS="${{ matrix.TARGET.CFLAGS }}"
-          make -C opcodes CFLAGS="${{ matrix.TARGET.CFLAGS }}"
-          make -C libiberty CFLAGS="${{ matrix.TARGET.CFLAGS }}"
-          make -C intl CFLAGS="${{ matrix.TARGET.CFLAGS }}"
-          make -C gas CFLAGS="${{ matrix.TARGET.CFLAGS }}"
-          make -C binutils CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C bfd
+          make -C opcodes
+          make -C libiberty
+          make -C intl
+          make -C gas
+          make -C binutils
       - name: Test for file
         shell: bash
         run: |
