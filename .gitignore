@@ -1,4 +1,5 @@
 build/
+release/
 *.o
 *.cache
 config.status
@@ -56,6 +57,20 @@ gas/targ-cpu.c
 gas/targ-cpu.h
 gas/targ-env.h
 libiberty/alloca-conf.h
+
+ld/ldgram.c
+ld/ldgram.h
+ld/ldlex.c
+ld/ldscripts/
+ld/eelf32bsmip.c
+ld/eelf32lsmip.c
+ld/eelf64bmip.c
+ld/eelf64lmip.c
+ld/emipsbig.c
+ld/emipslit.c
+ld/ld-new
+ld/ldemul-list.h
+ld/stringify.sed
 
 POTFILES
 *.la

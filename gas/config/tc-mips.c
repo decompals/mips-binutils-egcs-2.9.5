@@ -9233,6 +9233,8 @@ md_number_to_chars (buf, val, n)
 
 CONST char *md_shortopts = "O::g::G:";
 
+extern boolean gIrixSymtab;
+
 struct option md_longopts[] = {
 #define OPTION_MIPS1 (OPTION_MD_BASE + 1)
   {"mips0", no_argument, NULL, OPTION_MIPS1},
@@ -9287,6 +9289,7 @@ struct option md_longopts[] = {
 #define OPTION_XGOT (OPTION_MD_BASE + 19)
 #define OPTION_32 (OPTION_MD_BASE + 20)
 #define OPTION_64 (OPTION_MD_BASE + 21)
+#define OPTION_IRIX_SYMTAB (OPTION_MD_BASE + 24)
 #ifdef OBJ_ELF
   {"KPIC", no_argument, NULL, OPTION_CALL_SHARED},
   {"xgot", no_argument, NULL, OPTION_XGOT},
@@ -9294,6 +9297,7 @@ struct option md_longopts[] = {
   {"non_shared", no_argument, NULL, OPTION_NON_SHARED},
   {"32", no_argument, NULL, OPTION_32},
   {"64", no_argument, NULL, OPTION_64},
+  {"irix-symtab", no_argument, NULL, OPTION_IRIX_SYMTAB},
 #endif
 
   {NULL, no_argument, NULL, 0}
@@ -9605,6 +9609,9 @@ md_parse_option (c, arg)
 	  || strcmp (arg,"eabi") == 0)
 	mips_abi_string = arg;
       break;
+    case OPTION_IRIX_SYMTAB:
+      gIrixSymtab = true;
+      break;
 
     default:
       return 0;
@@ -9712,7 +9719,8 @@ MIPS options:\n\
 -non_shared		do not generate position independent code\n\
 -xgot			assume a 32 bit GOT\n\
 -32			create 32 bit object file (default)\n\
--64			create 64 bit object file\n"));
+-64			create 64 bit object file\n\
+-irix-symtab		create elfs with broken irix symtab\n"));
 #endif
 }
 
