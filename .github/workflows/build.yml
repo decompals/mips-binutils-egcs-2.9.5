@@ -37,18 +37,18 @@ jobs:
       - name: Configure for mips
         shell: bash
         run: |
-          CC="${{ matrix.TARGET.HOST_GCC }}" CFLAGS="${{ matrix.TARGET.CFLAGS }}" ./configure --target=mips-linux --prefix=/opt/cross --disable-gprof --disable-gdb --disable-werror --host=${{ matrix.TARGET.HOST }} --build=${{ matrix.TARGET.HOST }}
+          CC="${{ matrix.TARGET.HOST_GCC }}" CFLAGS="-Wno-implicit-int" ./configure --target=mips-linux --prefix=/opt/cross --disable-gprof --disable-gdb --disable-werror --host=${{ matrix.TARGET.HOST }} --build=${{ matrix.TARGET.HOST }}
 
       - name: Make
         shell: bash
         run: |
-          make -C bfd
-          make -C opcodes
-          make -C libiberty
-          make -C intl
-          make -C gas
-          make -C binutils
-          make -C ld
+          make -C bfd CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C opcodes CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C libiberty CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C intl CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C gas CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C binutils CFLAGS="${{ matrix.TARGET.CFLAGS }}"
+          make -C ld CFLAGS="${{ matrix.TARGET.CFLAGS }}"
       - name: Test for file
         shell: bash
         run: |
