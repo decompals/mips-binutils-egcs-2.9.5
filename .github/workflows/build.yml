@@ -48,6 +48,7 @@ jobs:
           make -C intl
           make -C gas
           make -C binutils
+          make -C ld
       - name: Test for file
         shell: bash
         run: |
