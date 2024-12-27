@@ -21,7 +21,7 @@ jobs:
               CFLAGS: '-DDARWIN -Wno-implicit-int -Wno-return-type -Wno-error -Wno-implicit-function-declaration -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
               HOST: 'i386-apple-darwin',
               ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-mac.tar.gz',
-              HOST_GCC: 'gcc-11'
+              HOST_GCC: 'gcc-13'
             }
 
     name: Building binutils for ${{ matrix.TARGET.OS }}
