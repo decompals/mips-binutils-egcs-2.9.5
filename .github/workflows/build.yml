@@ -17,7 +17,7 @@ jobs:
               HOST_GCC: 'gcc'
             }
           - {
-              OS: 'macos-14',
+              OS: 'macos-13',
               CFLAGS: '-DDARWIN -Wno-implicit-int -Wno-return-type -Wno-error -Wno-implicit-function-declaration -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
               HOST: 'i386-apple-darwin',
               ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-mac.tar.gz',
@@ -26,7 +26,7 @@ jobs:
 
     name: Building binutils for ${{ matrix.TARGET.OS }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies (Ubuntu)
         shell: bash
