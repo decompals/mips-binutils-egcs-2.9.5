@@ -1,6 +1,6 @@
 name: Build
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -13,18 +13,20 @@ jobs:
               OS: 'ubuntu-20.04',
               CFLAGS: '-static -fno-stack-protector -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
               HOST: 'i386-pc-linux',
-              ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-linux.tar.gz'
+              ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-linux.tar.gz',
+              HOST_GCC: 'gcc'
             }
-          # - {
-          #     OS: 'macos-latest',
-          #     CFLAGS: '-DDARWIN -Wno-return-type -Wno-error -Wno-implicit-function-declaration -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
-          #     HOST: 'i386-apple-darwin',
-          #     ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-mac.tar.gz'
-          #   }
+          - {
+              OS: 'macos-13',
+              CFLAGS: '-DDARWIN -Wno-implicit-int -Wno-return-type -Wno-error -Wno-implicit-function-declaration -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
+              HOST: 'i386-apple-darwin',
+              ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-mac.tar.gz',
+              HOST_GCC: 'gcc-13'
+            }
 
     name: Building binutils for ${{ matrix.TARGET.OS }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies (Ubuntu)
         shell: bash
@@ -35,7 +37,7 @@ jobs:
       - name: Configure for mips
         shell: bash
         run: |
-          ./configure --target=mips-linux --prefix=/opt/cross --disable-gprof --disable-gdb --disable-werror --host=${{ matrix.TARGET.HOST }} --build=${{ matrix.TARGET.HOST }}
+          CC="${{ matrix.TARGET.HOST_GCC }}" CFLAGS="-Wno-implicit-int" ./configure --target=mips-linux --prefix=/opt/cross --disable-gprof --disable-gdb --disable-werror --host=${{ matrix.TARGET.HOST }} --build=${{ matrix.TARGET.HOST }}
 
       - name: Make
         shell: bash

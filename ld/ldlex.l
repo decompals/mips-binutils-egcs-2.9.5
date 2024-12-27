@@ -76,9 +76,15 @@ static unsigned int lineno_stack[MAX_INCLUDE_DEPTH];
 static unsigned int include_stack_ptr = 0;
 static int vers_node_nesting = 0;
 
+#ifdef DARWIN
+#define YY_SIZE_T yy_size_t
+#else
+#define YY_SIZE_T int
+#endif
+
 static YY_BUFFER_STATE yy_create_string_buffer PARAMS ((const char *string,
 							size_t size));
-static void yy_input PARAMS ((char *, int *result, int max_size));
+static void yy_input PARAMS ((char *, YY_SIZE_T *result, int max_size));
 
 static void comment PARAMS ((void));
 static void lex_warn_invalid PARAMS ((char *where, char *what));
@@ -581,7 +587,7 @@ ldlex_popstate ()
 static void
 yy_input (buf, result, max_size)
      char *buf;
-     int *result;
+     YY_SIZE_T *result;
      int max_size;
 {
   *result = 0; 
