@@ -20,7 +20,7 @@ jobs:
               OS: 'macos-13',
               CFLAGS: '-DDARWIN -Wno-implicit-int -Wno-return-type -Wno-error -Wno-implicit-function-declaration -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
               HOST: 'i386-apple-darwin',
-              ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-mac.tar.gz',
+              ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-macos.tar.gz',
               HOST_GCC: 'gcc-13'
             }
 
