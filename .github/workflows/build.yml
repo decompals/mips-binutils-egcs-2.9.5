@@ -10,27 +10,28 @@ jobs:
       matrix:
         TARGET:
           - {
-              OS: 'ubuntu-20.04',
+              OS: 'ubuntu-22.04',
               CFLAGS: '-static -fno-stack-protector -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
               HOST: 'i386-pc-linux',
               ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-linux.tar.gz',
               HOST_GCC: 'gcc'
             }
           - {
-              OS: 'macos-13',
+              OS: 'macos-15-intel',
               CFLAGS: '-DDARWIN -Wno-implicit-int -Wno-return-type -Wno-error -Wno-implicit-function-declaration -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0',
               HOST: 'i386-apple-darwin',
               ARCHIVE_NAME: 'mips-binutils-egcs-2.9.5-macos.tar.gz',
               HOST_GCC: 'gcc-13'
             }
 
-    name: Building binutils for ${{ matrix.TARGET.OS }}
+    name: Building binutils for ${{ matrix.TARGET.HOST }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@main
 
       - name: Install dependencies (Ubuntu)
         shell: bash
-        if: matrix.TARGET.OS == 'ubuntu-20.04'
+        if: matrix.TARGET.OS == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential bison file gperf flex
@@ -76,9 +77,9 @@ jobs:
           cd release && tar -czf ../${{ matrix.TARGET.ARCHIVE_NAME }} *
 
       - name: Upload archive
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@main
         with:
-          name: mips-binutils-egcs-2.9.5-${{ matrix.TARGET.OS }}
+          name: mips-binutils-egcs-2.9.5-${{ matrix.TARGET.HOST }}
           path: |
             ${{ matrix.TARGET.ARCHIVE_NAME }}
 
